@@ -1,4 +1,14 @@
-const numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");
+let numberOfFilms;
+
+function start() {
+  numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");
+
+  while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)) {
+    numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");
+  }
+}
+
+start();
 
 const personalMuvieDB = {
   count: numberOfFilms,
@@ -8,32 +18,48 @@ const personalMuvieDB = {
   privat: false,
 };
 
-for (let i = 0; i < numberOfFilms; i++) {
-  const a = prompt("Один из просмотренных фильмов?", ""),
-    b = prompt("На сколько оцените его?", "");
+function rememberMyFilms() {
+  for (let i = 0; i < numberOfFilms; i++) {
+    const a = prompt("Один из просмотренных фильмов?", ""),
+      b = prompt("На сколько оцените его?", "");
 
-  if (a != null && b != null && a != "" && b != "" && a.length < 50) {
-    personalMuvieDB.muvies[a] = b;
-    console.log("done");
+    if (a != null && b != null && a != "" && b != "" && a.length < 50) {
+      personalMuvieDB.muvies[a] = b;
+      console.log("done");
+    } else {
+      console.log("error");
+      i--;
+    }
+
+    if (i === numberOfFilms) {
+      break;
+    }
+  }
+}
+
+rememberMyFilms();
+
+function detectPersonalLevel() {
+  if (personalMuvieDB.count < 10) {
+    console.log("Просмотрено довольно мало фильмов");
+  } else if (personalMuvieDB.count >= 10 && personalMuvieDB.count < 30) {
+    console.log("Вы классический зритель");
+  } else if (personalMuvieDB.count >= 30) {
+    console.log("Вы киноман");
   } else {
-    console.log("error");
-    i--;
-  }
-
-  if (i === numberOfFilms) {
-    break;
+    console.log("Произошла ошибка");
   }
 }
 
-if (personalMuvieDB.count < 10) {
-  console.log("Просмотрено довольно мало фильмов");
-} else if (personalMuvieDB.count >= 10 && personalMuvieDB.count < 30) {
-  console.log("Вы классический зритель");
-} else if (personalMuvieDB.count >= 30) {
-  console.log("Вы киноман");
-} else {
-  console.log("Произошла ошибка");
+detectPersonalLevel();
+
+function showMyDB(hidden) {
+  if (!hidden) {
+    console.log(personalMuvieDB);
+  }
 }
+
+showMyDB(personalMuvieDB);
 
 console.log(personalMuvieDB);
 
