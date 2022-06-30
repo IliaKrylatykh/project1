@@ -20,7 +20,7 @@ const personalMuvieDB = {
 
 function rememberMyFilms() {
   for (let i = 0; i < numberOfFilms; i++) {
-    const a = prompt("Один из просмотренных фильмов?", ""),
+    const a = prompt("Один из просмотренных фильмов?", "").trim(),
       b = prompt("На сколько оцените его?", "");
 
     if (a != null && b != null && a != "" && b != "" && a.length < 50) {
