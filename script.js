@@ -64,3 +64,11 @@ showMyDB(personalMuvieDB);
 console.log(personalMuvieDB);
 
 console.log(personalMuvieDB.count);
+
+function writeYourGenres() {
+  for (let i = 1; i <= 3; i++) {
+    personalMuvieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
+  }
+}
+
+writeYourGenres();
